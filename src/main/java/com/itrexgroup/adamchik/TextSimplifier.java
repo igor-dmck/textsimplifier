@@ -4,72 +4,43 @@ package com.itrexgroup.adamchik;
 public class TextSimplifier {
     public static void main(String[] args) {
 
-        String input = "Success, Coffee, cimple, an apple, The Ttable, Lucky, Ttuuuuuuuute, a doodeee!";
+        String input = "Success, Coffee, cimple, an applE, The Ttable, Lucky, Ttuuuuuuuute, a doodeee! YYyy aaA";
 
-        removeArt3(removeArt2(removeE(removeArt1(replaceDuplicates(replaceO(replaceE(replaceC(replaceCk(replaceCi(replaceCe(input)))))))))));
+        removeLastLetterE(removeArticles(removeDoubleLetter(removeLetterC(input))));
 
     }
 
-    public static String replaceCe(String input) {
+    public static String removeLetterC (String input) {
 
-        String resultText = input.replaceAll("(?i)(ce)", "se");
-        System.out.println(resultText);
-        return resultText;
-    }
-
-    public static String replaceCi(String input) {
-        String resultText = input.replaceAll("(?i)ci", "si");
-        System.out.println(resultText);
-        return resultText;
-    }
-
-    public static String replaceCk(String input) {
-        String resultText = input.replaceAll("(?i)ck", "k");
-        System.out.println(resultText);
-        return resultText;
-    }
-
-    public static String replaceC(String input) {
-        String resultText = input.replaceAll("(?i)c", "k");
-        System.out.println(resultText);
-        return resultText;
+        String replaceCe = input.replaceAll("(?i)(ce)", "se");
+        String replaceCi = replaceCe.replaceAll("(?i)ci", "si");
+        String replaceCk = replaceCi.replaceAll("(?i)ck", "k");
+        String removeC = replaceCk.replaceAll("(?i)c", "k");
+        System.out.println(removeC);
+        return removeC;
     }
 
 
-    public static String replaceE(String input) {
-        String resultText = input.replaceAll("e{2}", "i");
-        System.out.println(resultText);
-        return resultText;
+    public static String removeDoubleLetter(String input) {
+        String replaceDoubleE = input.replaceAll("e{2}", "i");
+        String replaceDoubleU = replaceDoubleE.replaceAll("o{2}", "u");
+        String removeDuplicates = replaceDoubleU.replaceAll("(?i)(\\w)\\1+","$1");
+        System.out.println(removeDuplicates);
+        return removeDuplicates;
     }
 
-    public static String replaceO(String input) {
-        String resultText = input.replaceAll("o{2}", "u");
-        System.out.println(resultText);
-        return resultText;
-    }
-    public static String replaceDuplicates(String input) {
-        String resultText = input.replaceAll("(\\w)\\1+","$1");
-        System.out.println(resultText);
-        return resultText;
-    }
-    public static String removeArt1(String input) {
-        String resultText = input.replaceAll("(?<![a-zA-Z])(?i)the(?![a-zA-Z])","");
-        System.out.println(resultText);
-        return resultText;
-    }
-    public static String removeE(String input) {
-        String resultText = input.replaceAll("(?<!\\b)e\\b","");
-        System.out.println(resultText);
-        return resultText;
-    }
-    public static String removeArt2(String input) {
-        String resultText = input.replaceAll("(?<![a-zA-Z])(?i)an(?![a-zA-Z])","");
-        System.out.println(resultText);
-        return resultText;
-    }
-    public static String removeArt3(String input) {
-        String resultText = input.replaceAll("(?<![a-zA-Z])(?i)a(?![a-zA-Z])", "");
-        System.out.println(resultText);
-        return resultText;
+
+    public static String removeArticles(String input) {
+        String removeThe = input.replaceAll("(?<![a-zA-Z])(?i)the(?![a-zA-Z])","");
+        String removeAn = removeThe.replaceAll("(?<![a-zA-Z])(?i)an(?![a-zA-Z])","");
+        String removeA = removeAn.replaceAll("(?<![a-zA-Z])(?i)a(?![a-zA-Z])", "");
+        System.out.println(removeA);
+        return removeA;
+
+        }
+    public static String removeLastLetterE(String input) {
+        String removeE = input.replaceAll("(?<!\\b)(?i)e\\b","");
+        System.out.println(removeE);
+        return removeE;
     }
 }

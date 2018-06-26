@@ -9,92 +9,36 @@ public class TextSimplifierTest
 {
 
     @Test
-    public void shouldReplaceCeOnSe()
+    public void shouldRemoveC()
     {
-        String expectedResult = "sucsess";
+        String expectedResult = "suksess";
         TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceCe("success");
+        String resultString = ts.removeLetterC("success");
         System.out.println(resultString);
 
 
         assertTrue( expectedResult.equals(resultString));
     }
 
+
     @Test
-    public void shouldReplaceCiOnSi()
+    public void shouldReplaceDoubleLetter()
     {
-        String expectedResult = "simple";
+        String expectedResult = "simple, Dude, bonjour";
         TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceCi("cimple");
+        String resultString = ts.removeDoubleLetter("seemple, Doode, bonjouuuuuuuur");
         System.out.println(resultString);
 
 
         assertTrue( expectedResult.equals(resultString));
     }
 
-    @Test
-    public void shouldReplaceCkOnK()
-    {
-        String expectedResult = "Luky";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceCk("Lucky");
-        System.out.println(resultString);
-
-
-        assertTrue( expectedResult.equals(resultString));
-    }
-
-    @Test
-    public void shouldReplaceConK()
-    {
-        String expectedResult = "Lukky";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceC("Lucky");
-        System.out.println(resultString);
-
-
-        assertTrue( expectedResult.equals(resultString));
-    }
-    @Test
-    public void shouldReplaceDoubleE()
-    {
-        String expectedResult = "simple";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceE("seemple");
-        System.out.println(resultString);
-
-
-        assertTrue( expectedResult.equals(resultString));
-    }
-
-    @Test
-    public void shouldReplaceDoubleO()
-    {
-        String expectedResult = "Dude";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceO("Doode");
-        System.out.println(resultString);
-
-
-        assertTrue( expectedResult.equals(resultString));
-    }
-
-    @Test
-    public void shouldReplaceDuplicteCharachtersOnSingle() {
-        String expectedResult = "bonjour";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.replaceDuplicates("bonjouuuuuuuur");
-        System.out.println(resultString);
-
-
-        assertTrue(expectedResult.equals(resultString));
-    }
 
     @Test
     public void shouldRemoveLastE() {
         String expectedResult = "e email";
         TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.removeE("e emaile");
+        String resultString = ts.removeLastLetterE("e emaile");
         System.out.println(resultString);
 
 
@@ -102,35 +46,14 @@ public class TextSimplifierTest
     }
 
     @Test
-    public void shouldRemoveThe() {
-        String expectedResult = " cure";
+    public void shouldRemoveArticles() {
+        String expectedResult = " cure,  place at,  annotations";
         TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.removeArt1("The cure");
+        String resultString = ts.removeArticles("The cure, A place at, An annotations");
         System.out.println(resultString);
 
 
         assertTrue(expectedResult.equals(resultString));
     }
 
-    @Test
-    public void shouldRemoveA() {
-        String expectedResult = " place at";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.removeArt3("A place at");
-        System.out.println(resultString);
-
-
-        assertTrue(expectedResult.equals(resultString));
-    }
-
-    @Test
-    public void shouldRemoveAn() {
-        String expectedResult = " annotations";
-        TextSimplifier ts = new TextSimplifier();
-        String resultString = ts.removeArt2("An annotations");
-        System.out.println(resultString);
-
-
-        assertTrue(expectedResult.equals(resultString));
-    }
 }
